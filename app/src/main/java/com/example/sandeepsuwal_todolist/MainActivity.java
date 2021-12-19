@@ -21,6 +21,15 @@ public class MainActivity extends AppCompatActivity {
         repository = Repository.getInstance(this);
         todos = repository.getAllTodos();
         Log.d(Tag, "todos size: "+ todos.size());
+        Todo todo = todos.get(0);
+        Log.d(Tag, ""+todo);
+
+        //Checking through log if deleted or updated
+        //repository.delete(todo.getId());
+        todo.setTitle("xxx");
+        repository.update(todo);
+        //Log.d(Tag, "todos size: "+todos.size());
+        Log.d(Tag, "todos size: "+todos.get(0));
 
 
     }

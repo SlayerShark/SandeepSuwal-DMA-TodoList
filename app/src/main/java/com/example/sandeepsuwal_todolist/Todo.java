@@ -11,6 +11,7 @@ public class Todo {
     private int priority;
     private Date updatedAt;
 
+    /*-------------------Constructors---------------------------------------------------------*/
     public Todo(UUID id, String title, String description, int priority, Date updatedAt) {
         this.id = id;
         this.title = title;
@@ -31,6 +32,7 @@ public class Todo {
         updatedAt = new Date(); //generates current date
     }
 
+    /*-------------------Getter and Setter----------------------------------------------*/
     public UUID getId() {
         return id;
     }
@@ -71,4 +73,14 @@ public class Todo {
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "Todo{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", priority=" + priority +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

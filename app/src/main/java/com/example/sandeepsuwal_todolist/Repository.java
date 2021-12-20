@@ -37,6 +37,11 @@ public class Repository {
         return todos;
     }
 
+    /*-------------------------------CRUD add data--------------------------------------*/
+    public void addTodo(Todo todo){
+        todos.add(todo);
+    }
+
     /*---------------------------------CRUD read data----------------------------------*/
     public Todo getTodoById(UUID id) {
         for (int i = 0; i < todos.size(); i++) {

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ public class TodoListFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TodoAdapter adapter;
-    private Repository repository;
+    private MainViewModel viewModel;
     private List<Todo> todos;
     private FloatingActionButton fabButton;
 
@@ -41,7 +42,7 @@ public class TodoListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        repository = Repository.getInstance(getActivity().getApplicationContext());
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +52,7 @@ public class TodoListFragment extends Fragment {
                 fm.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit(); //backstack for using back button
             }
         });
-        todos = repository.getAllTodos();
+        todos = viewModel.getTodos();
         adapter = new TodoAdapter(todos);
         recyclerView.setAdapter(adapter);
     }

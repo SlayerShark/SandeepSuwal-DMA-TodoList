@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +24,8 @@ public class AddTodoFragment extends Fragment {
     private EditText titleEditText;
     private EditText descriptionEditText;
     private Button addButton;
-    private Repository repository;
+    private MainViewModel viewModel;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,9 @@ public class AddTodoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        repository = Repository.getInstance(getActivity().getApplicationContext());
+//        repository = Repository.getInstance(getActivity().getApplicationContext());
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,9 +62,14 @@ public class AddTodoFragment extends Fragment {
                 newTodo.setTitle(title);
                 newTodo.setPriority(1);
                 newTodo.setDescription(description);
-                repository.addTodo(newTodo);
+                viewModel.insert(newTodo);
+
+//                TodoListFragment fragment = new TodoListFragment();
+                FragmentManager fm = getParentFragmentManager();
+                fm.popBackStack();
+//                fm.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+
             }
         });
-
     }
 }

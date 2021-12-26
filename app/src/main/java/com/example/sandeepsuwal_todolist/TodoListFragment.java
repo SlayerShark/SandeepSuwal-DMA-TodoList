@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +26,7 @@ public class TodoListFragment extends Fragment {
     private RecyclerView recyclerView;
     private TodoAdapter adapter;
     private MainViewModel viewModel;
-    private List<Todo> todos;
+    private LiveData<List<Todo>> todos;
     private FloatingActionButton fabButton;
 
     @Override
@@ -52,8 +55,32 @@ public class TodoListFragment extends Fragment {
                 fm.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit(); //backstack for using back button
             }
         });
+
+
+/*
+        viewModel.getTodos().observe(getViewLifecycleOwner(), new Observer<List<Todo>>() {
+            @Override
+            public void onChanged(List<Todo> todos) {
+                adapter = new TodoAdapter();
+                if (todos != null)
+                    adapter.setData(todos);
+            }
+        });
+*/
+
         todos = viewModel.getTodos();
         adapter = new TodoAdapter(todos);
+
         recyclerView.setAdapter(adapter);
     }
+
+/*
+    @Override
+    public void onStart(){
+        super.onStart();
+        todos = viewModel.getTodos();
+        adapter.setData(todos);
+    }
+*/
+
 }

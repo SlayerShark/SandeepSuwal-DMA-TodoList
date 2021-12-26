@@ -1,18 +1,26 @@
 package com.example.sandeepsuwal_todolist;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.Date;
 import java.util.UUID;
 
-public class Todo {
+    @Entity(tableName = "todo")
+    public class Todo {
 
-    private UUID id;    //UUID automatically generates id
-    private String title;
-    private String description;
-    private int priority;
-    private Date updatedAt;
+        @PrimaryKey(autoGenerate = true)
+        private int id;
+        private String title;
+        private String description;
+        private int priority;
+        @ColumnInfo(name = "updated_at")
+        private Date updatedAt;
 
     /*-------------------Constructors---------------------------------------------------------*/
-    public Todo(UUID id, String title, String description, int priority, Date updatedAt) {
+    public Todo(int id, String title, String description, int priority, Date updatedAt) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -20,6 +28,7 @@ public class Todo {
         this.updatedAt = updatedAt;
     }
 
+    @Ignore
     public Todo(String title, String description, int priority, Date updatedAt) {
         this.title = title;
         this.description = description;
@@ -27,17 +36,19 @@ public class Todo {
         this.updatedAt = updatedAt;
     }
 
+/*
     public Todo() {
         id = UUID.randomUUID(); //generates random unique id
         updatedAt = new Date(); //generates current date
     }
+*/
 
     /*-------------------Getter and Setter----------------------------------------------*/
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

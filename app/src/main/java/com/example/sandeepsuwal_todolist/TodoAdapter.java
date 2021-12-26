@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -15,10 +16,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
 
     List<Todo> data;
 
-    public TodoAdapter(List<Todo> todos) {
-        data = todos;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -27,16 +24,22 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
         return new ViewHolder(view);
     }
 
+    public void setData(List<Todo> todos){
+        data = todos;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Todo todo = data.get(position);
         holder.titleTextview.setText(todo.getTitle());
-
     }
 
     @Override
     public int getItemCount() {
+        if(data == null)
+            return 0;
+
         return data.size();
     }
 

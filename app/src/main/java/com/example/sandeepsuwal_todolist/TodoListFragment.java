@@ -74,4 +74,12 @@ public class TodoListFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        todos = viewModel.getTodos();
+        adapter.setData(todos);
+    }
+
 }

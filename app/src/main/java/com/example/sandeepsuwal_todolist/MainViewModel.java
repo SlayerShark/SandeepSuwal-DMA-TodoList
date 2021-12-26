@@ -17,7 +17,7 @@ public class MainViewModel extends AndroidViewModel {
         repository = Repository.getInstance(application);
     }
 
-    public LiveData<List<Todo>> getTodos() {
+    public List<Todo> getTodos() {
         return repository.getAllTodos();
     }
 

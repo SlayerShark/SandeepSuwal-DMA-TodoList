@@ -13,7 +13,7 @@ public class Repository {
 
     private static Repository sInstance;    //single instance
 
-    private List<Todo> todos;
+    private LiveData<List<Todo>> todos;
 
     private AppDatabase database;
 
@@ -36,7 +36,7 @@ public class Repository {
         return sInstance;
     }
 
-    public List<Todo> getAllTodos() {
+    public LiveData<List<Todo>> getAllTodos() {
         return todos;
     }
 

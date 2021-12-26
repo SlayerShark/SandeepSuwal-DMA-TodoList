@@ -12,7 +12,7 @@ import java.util.List;
 public interface TodoDao {
 
     @Query("select * from todo order by priority")
-    public List<Todo> getAllTodos();
+    public LiveData<List<Todo>> getAllTodos();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insert(Todo todo);

@@ -16,10 +16,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
 
     List<Todo> data;
 
-    public TodoAdapter(List<Todo> todos) {
-        data = todos;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

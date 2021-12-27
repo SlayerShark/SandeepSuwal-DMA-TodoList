@@ -17,4 +17,9 @@ public interface TodoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insert(Todo todo);
 
+/*
+    @Query("SELECT * FROM todo WHERE id LIKE :id")
+    Todo findTodoById(int id);
+*/
+
 }

@@ -16,10 +16,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
 
     List<Todo> data;
 
-    public TodoAdapter(List<Todo> todos) {
-        data = todos;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,6 +33,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Todo todo = data.get(position);
         holder.titleTextview.setText(todo.getTitle());
+        holder.descriptionTextview.setText(todo.getDescription());
     }
 
     @Override
@@ -50,10 +47,12 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView titleTextview;
+        private TextView descriptionTextview;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextview = itemView.findViewById(R.id.title_tv);
+            descriptionTextview = itemView.findViewById(R.id.description_tv);
         }
     }
 }

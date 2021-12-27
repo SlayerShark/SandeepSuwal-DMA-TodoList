@@ -13,18 +13,13 @@ public class Repository {
 
     private static Repository sInstance;    //single instance
 
-    private List<Todo> todos;
+    private LiveData<List<Todo>> todos;
 
     private AppDatabase database;
 
     private Repository(Context context) {
         database = AppDatabase.getInstance(context);
-        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                todos = database.todoDao().getAllTodos();
-            }
-        });
+        todos = database.todoDao().getAllTodos();
     }
 
 
@@ -36,7 +31,7 @@ public class Repository {
         return sInstance;
     }
 
-    public List<Todo> getAllTodos() {
+    public LiveData<List<Todo>> getAllTodos() {
         return todos;
     }
 
@@ -66,6 +61,8 @@ public class Repository {
 //        Todo todo = getTodoById(id);
 //        if (todo != null)
 //        todos.remove(todo);
+
+
     }
 
         /*-------------------------------CRUD update data-------------------------------------*/

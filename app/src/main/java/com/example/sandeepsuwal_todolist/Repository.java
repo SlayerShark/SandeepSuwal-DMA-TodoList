@@ -19,12 +19,7 @@ public class Repository {
 
     private Repository(Context context) {
         database = AppDatabase.getInstance(context);
-        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                todos = database.todoDao().getAllTodos();
-            }
-        });
+        todos = database.todoDao().getAllTodos();
     }
 
 

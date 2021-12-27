@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -46,6 +47,18 @@ public class TodoListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        adapter = new TodoAdapter();
+
+        recyclerView.setAdapter(adapter);
+
+
+/*
+        TodoAdapter adapter = new TodoAdapter();
+        adapter.setData(todos);
+        recyclerView.setAdapter(adapter);
+*/
+
 //        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 //            viewModel= new ViewModelProvider(getActivity()).get(MainViewModel.class);
@@ -58,28 +71,26 @@ public class TodoListFragment extends Fragment {
             }
         });
 
+/*
         Observer<List<Todo>> newObserver = new Observer<List<Todo>>() {
             @Override
             public void onChanged(List<Todo> todos) {
                 TodoAdapter adapter = new TodoAdapter();
                 if (todos != null)
                     adapter.setData(todos);
-                    recyclerView.setAdapter(adapter);
+
+                recyclerView.setAdapter(adapter);
 
             }
         };
+*/
 
-/*
         viewModel.getTodos().observe(getViewLifecycleOwner(), new Observer<List<Todo>>() {
             @Override
             public void onChanged(List<Todo> todos) {
-                adapter = new TodoAdapter();
                 if (todos != null)
                     adapter.setData(todos);
             }
         });
-*/
-
-//        recyclerView.setAdapter(adapter);
     }
 }

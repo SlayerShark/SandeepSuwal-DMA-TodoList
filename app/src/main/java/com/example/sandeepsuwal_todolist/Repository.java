@@ -57,11 +57,7 @@ public class Repository {
     }
 
     /*---------------------------------CRUD delete data------------------------------*/
-    public void delete(UUID id) {
-//        Todo todo = getTodoById(id);
-//        if (todo != null)
-//        todos.remove(todo);
-
+    public void delete(int id) {
 
     }
 

@@ -2,6 +2,7 @@ package com.example.sandeepsuwal_todolist;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -17,9 +18,8 @@ public interface TodoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insert(Todo todo);
 
-/*
-    @Query("SELECT * FROM todo WHERE id LIKE :id")
-    Todo findTodoById(int id);
-*/
+    @Query("DELETE FROM todo WHERE id = :id")
+    void deleteById(int id);
+
 
 }

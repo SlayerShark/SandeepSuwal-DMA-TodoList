@@ -31,7 +31,6 @@ public class TodoListFragment extends Fragment {
     private MainViewModel viewModel;
     private List<Todo> todos;
     private FloatingActionButton fabButton;
-    private ImageButton delButton, editButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,12 +42,6 @@ public class TodoListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_todo_list, container, false);
         fabButton = view.findViewById(R.id.fab_button);
         recyclerView = view.findViewById(R.id.todos_list);
-
-        delButton = view.findViewById(R.id.btnDelete);
-        editButton = view.findViewById(R.id.btnEdit);
-
-
-
         return view;
     }
 
@@ -80,12 +73,4 @@ public class TodoListFragment extends Fragment {
 
 
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        todos = viewModel.getTodos();
-        adapter.setData(todos);
-    }
-
 }

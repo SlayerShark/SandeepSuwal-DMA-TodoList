@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,24 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
     List<Todo> data;
 
     private static AppDatabase sInstance;
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView titleTextview;
+        private TextView descriptionTextview;
+        private ImageButton delButton;
+        private Button upButton;
+
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            titleTextview = itemView.findViewById(R.id.title_tv);
+            descriptionTextview = itemView.findViewById(R.id.description_tv);
+
+            delButton = itemView.findViewById(R.id.btnDelete);
+            upButton = itemView.findViewById(R.id.btnUpdate);
+        }
+    }
 
     @NonNull
     @Override
@@ -57,6 +77,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
                 //this is to delete the data from List
                 data.remove(todo);
 
+                Toast.makeText(v.getContext(), "Deleted Data Successfully", Toast.LENGTH_SHORT).show();
+
                 //update the fresh list of List data to recieve
                 notifyDataSetChanged();
             }
@@ -80,7 +102,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
 
             }
         });
-
     }
 
     @Override
@@ -91,19 +112,5 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
         return data.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView titleTextview;
-        private TextView descriptionTextview;
-        private ImageButton delButton;
-
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            titleTextview = itemView.findViewById(R.id.title_tv);
-            descriptionTextview = itemView.findViewById(R.id.description_tv);
-
-            delButton = itemView.findViewById(R.id.btnDelete);
-        }
-    }
 }

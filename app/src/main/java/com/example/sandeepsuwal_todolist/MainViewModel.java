@@ -24,4 +24,8 @@ public class MainViewModel extends AndroidViewModel {
     public void insert(Todo todo) {
         repository.addTodo(todo);
     }
+
+    public void update(Todo todo) {
+        repository.editById(todo);
+    }
 }

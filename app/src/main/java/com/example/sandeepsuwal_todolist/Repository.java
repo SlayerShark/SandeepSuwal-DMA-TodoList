@@ -4,8 +4,6 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,13 +60,14 @@ public class Repository {
     }
 
         /*-------------------------------CRUD update data-------------------------------------*/
-        public Todo update(Todo todo){
-//        Todo newTodo = getTodoById(todo.getId());
-//        newTodo.setPriority(todo.getPriority());
-//        newTodo.setDescription(todo.getDescription());
-//        newTodo.setTitle(todo.getTitle());
-//        newTodo.setUpdatedAt(new Date());
-            return null;
-        }
+    public void editById(Todo todo){
+        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                database.todoDao().updateById(todo);
+            }
+        });
+    }
+
 
 }

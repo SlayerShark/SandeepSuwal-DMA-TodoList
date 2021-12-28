@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -59,6 +60,8 @@ public class AddTodoFragment extends Fragment {
                 Todo newTodo = new Todo(title, description, 1, new Date());
 
                 viewModel.insert(newTodo);
+
+                Toast.makeText(getContext(), "Added Todo Successfully", Toast.LENGTH_SHORT).show();
 
 //                TodoListFragment fragment = new TodoListFragment();
                 FragmentManager fm = getParentFragmentManager();

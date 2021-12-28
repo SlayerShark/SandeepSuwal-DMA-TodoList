@@ -11,13 +11,15 @@
         android:id="@+id/title_et"
         android:hint="Title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"/>
 
     <EditText
         android:id="@+id/description_et"
         android:hint="Description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"/>
 
     <Button
         android:id="@+id/add_btn"

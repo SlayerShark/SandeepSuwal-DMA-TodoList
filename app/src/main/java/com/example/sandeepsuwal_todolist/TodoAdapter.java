@@ -1,5 +1,6 @@
 package com.example.sandeepsuwal_todolist;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,15 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
 
+                Bundle bundle = new Bundle();
+                bundle.putString("id" , toString());
+                bundle.putString("title" , toString());
+                bundle.putString("description" , toString());
+
                 UpdateTodoFragment fragment = new UpdateTodoFragment();
+
+                fragment.setArguments(bundle);
+
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
 

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Sannd/AndroidStudioProjects/SandeepSuwalToDoList/app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Sannd/AndroidStudioProjects/SandeepSuwalToDoList/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Sannd/AndroidStudioProjects/SandeepSuwalToDoList/app/src/main/res/layout/activity_main.xml" value="0.209375" />
         <entry key="..\:/Users/Sannd/AndroidStudioProjects/SandeepSuwalToDoList/app/src/main/res/layout/fragment_add_todo.xml" value="0.25" />
         <entry key="..\:/Users/Sannd/AndroidStudioProjects/SandeepSuwalToDoList/app/src/main/res/layout/fragment_todo_list.xml" value="0.25" />

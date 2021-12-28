@@ -16,11 +16,6 @@ import android.widget.EditText;
 
 import java.util.Date;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddTodoFragment#} factory method to
- * create an instance of this fragment.
- */
 public class AddTodoFragment extends Fragment {
 
     private EditText titleEditText;

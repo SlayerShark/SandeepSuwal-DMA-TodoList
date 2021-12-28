@@ -67,9 +67,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
             public void onClick(View v) {
 
                 Bundle bundle = new Bundle();
-                bundle.putString("id" , toString());
-                bundle.putString("title" , toString());
-                bundle.putString("description" , toString());
+                bundle.putInt("id", todo.getId());
+                bundle.putString("title" , todo.getTitle());
+                bundle.putString("description" , todo.getDescription());
 
                 UpdateTodoFragment fragment = new UpdateTodoFragment();
 

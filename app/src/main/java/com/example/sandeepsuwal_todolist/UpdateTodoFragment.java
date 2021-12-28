@@ -16,11 +16,13 @@ public class UpdateTodoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+/*
         Bundle bundle = this.getArguments();
 
         String id = bundle.get("id").toString();
         String title = bundle.get("title").toString();
         String description = bundle.get("description").toString();
+*/
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.example.sandeepsuwal_todolist;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,14 +7,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.zip.Inflater;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
 
@@ -41,26 +40,38 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
         Todo todo = data.get(position);
         holder.titleTextview.setText(todo.getTitle());
         holder.descriptionTextview.setText(todo.getDescription());
-        holder.delButton.setOnClickListener(new View.OnClickListener() {
 
+        holder.delButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    AppDatabase db = Room.databaseBuilder(holder.titleTextview.getContext(),
-                            AppDatabase.class, "todo_db")
-                            .allowMainThreadQueries()
-                            .build();
-                    TodoDao todoDao = db.todoDao();
+                AppDatabase db = Room.databaseBuilder(holder.titleTextview.getContext(),
+                        AppDatabase.class, "todo_db")
+                        .allowMainThreadQueries()
+                        .build();
+                TodoDao todoDao = db.todoDao();
 
-                    //this is to delete the data from RoomDatabase
-                    todoDao.deleteById(todo.getId());
+                //this is to delete the data from RoomDatabase
+                todoDao.deleteById(todo.getId());
 
-                    //this is to delete the data from List
-                    data.remove(todo);
+                //this is to delete the data from List
+                data.remove(todo);
 
-                    //update the fresh list of List data to recieve
-                    notifyDataSetChanged();
+                //update the fresh list of List data to recieve
+                notifyDataSetChanged();
             }
         });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                UpdateTodoFragment fragment = new UpdateTodoFragment();
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+
+            }
+        });
+
     }
 
     @Override
@@ -75,7 +86,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
 
         private TextView titleTextview;
         private TextView descriptionTextview;
-        private ImageButton delButton, editButton;
+        private ImageButton delButton;
 
 
         public ViewHolder(@NonNull View itemView) {
